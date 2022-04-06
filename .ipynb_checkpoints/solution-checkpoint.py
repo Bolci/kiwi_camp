@@ -34,7 +34,11 @@ def main():
     goal_dest = args['goal_dest']
     bag = int(args['bags'])
     return_f = args["return"]
-
+    
+    #check if from and goal dest are not the same
+    if from_dest == goal_dest:
+        print("Invalid arguments")
+        return -1
 
     #load database
     try:
@@ -49,14 +53,22 @@ def main():
     
     #search in database
     mat = database.search(from_dest,goal_dest,bags=bag)
-    
+   
     if mat == []:
         print("No matches found")
-        
-    else:
-        #export data
-        NewDataExporter = DataExporter()
-        NewDataExporter.save_file(mat,1,from_dest,goal_dest,bag)
+        return 0
+    #export data
+    NewDataExporter = DataExporter()
+    
+    print("Printing flights")
+    NewDataExporter.save_file(mat,1,from_dest,goal_dest,bag)
+    
+    #get return flight
+    if return_f:
+        mat_return = database.search(goal_dest,from_dest,bags=bag,return_flight = True, time_cond = mat[0][0].record['arrival'])
+        print("Printing return flights")
+        NewDataExporter.save_file(mat_return,1,goal_dest,from_dest,bag)
+    
     
     return 0
         

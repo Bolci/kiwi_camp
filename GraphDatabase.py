@@ -34,7 +34,7 @@ class Graph_Database():
                 saved_id_or = id_x
                 origin_Found = True
                 
-                if dest_Found == True:
+                if dest_Found:
                     break
                     
         new_conection = Conection(record)
@@ -73,7 +73,7 @@ class Graph_Database():
     
         
     #search engine
-    def search(self, origin,destination,bags = 0, return_f = False):
+    def search(self, origin,destination,bags = 0,return_flight = False, time_cond = "1971-07-02T00:00:00"):
         ''' search over graph and return matches'''
         
         #get index of origin airport
@@ -101,22 +101,29 @@ class Graph_Database():
             
             for single_connection in airport.connection:
                 
-                #if the airport was not visited yet
-                if single_connection.target_city not in v_city:
-                    
-                    #check bags
-                    if int(single_connection.record['bags_allowed']) >= bags:
+                
+                
+                #if the airport was not visited yet  and if bags condition is met
+                if single_connection.target_city not in v_city and int(single_connection.record['bags_allowed']) >= bags:
+
+                    #check if the time condition is satiefied
+                    if v_cone != []:
+                        if is_time_in_interval(v_cone[-1].record['arrival'], single_connection.record['departure']):
+                           
+                            v_cone.append(single_connection)
+                            grow(single_connection.target_city,v_city,v_cone)
+                    else:
                         
-                        #check if the time condition is satiefied
-                        if v_cone != []:
-                            if is_time_in_interval(v_cone[-1].record['arrival'], single_connection.record['departure']):
+                        #check if I want to look only for return flights
+                        if return_flight:
+                            if compare_two_time(single_connection.record['departure'],time_cond):
+                   
                                 v_cone.append(single_connection)
                                 grow(single_connection.target_city,v_city,v_cone)
+
                         else:
                             v_cone.append(single_connection)
                             grow(single_connection.target_city,v_city,v_cone)
-                
-        
                         
         grow(self.airports[origin_id],visited_cities,visited_connection)
         return matches

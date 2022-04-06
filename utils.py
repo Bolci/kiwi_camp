@@ -20,6 +20,7 @@ def substract_lists(list_1,list_2):
     return list(map(lambda x:x[0]-x[1],zip(list_1,list_2)))
 
 
+
 def is_time_in_interval(time1,time2,minimum_delta_hours = 1 ,maximum_delta_hours = 6):
     ''' , expected format 2021-09-02T05:50:00, expected todays_dat = '2021-09-02T00:00:00'''
      
@@ -36,4 +37,13 @@ def get_time_interval(time1,time2):
     time_b = datetime.fromisoformat(time2)
     
     return time_to_iso((time_a -time_b))
+    
+
+def compare_two_time(time1,time2):
+    ''' copare if time1 if bigger than time2'''
+    time_a = datetime.fromisoformat(time1)    
+    time_b = datetime.fromisoformat(time2)
+    
+    
+    return True if time_a > time_b else False
     
