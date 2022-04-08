@@ -1,9 +1,9 @@
 import argparse
 
-from GraphDatabase import Graph_Database
-from Conection import Conection
-from Airport import Airport
-from DataExporter import DataExporter
+from graphDatabase import Graph_Database
+from flight import Conection
+from airport import Airport
+from dataExporter import DataExporter
 from utils import *
 
 def main():

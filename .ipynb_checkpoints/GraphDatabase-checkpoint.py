@@ -1,5 +1,5 @@
-from Conection import Conection
-from Airport import Airport
+from flight import Conection
+from airport import Airport
 from utils import *
 
 class Graph_Database():
@@ -7,10 +7,11 @@ class Graph_Database():
         self.attributes = attributes
         self.airports = []
         
-    def add_record(self, single_record):
+    def add_record(self, record):
         ''' add single record to database'''
 
-        record = dict(zip(self.attributes,single_record))
+        #record = dict(zip(self.attributes,single_record))
+        record = {k: v for k,v in zip(self.attributes, record)}
         
         #initial variables
         saved_id_dest = -1

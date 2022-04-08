@@ -14,7 +14,15 @@ class DataExporter():
     @staticmethod
     def calculate_price(connection,bags_count):
         ''' calculate total price of all requested flights'''
-        return sum([float(single_flight['base_price'] + bags_count * single_flight['bag_price']) for single_flight in connection])
+        
+        
+        
+        return sum([
+            float(single_flight['base_price'] + bags_count * single_flight['bag_price']) f
+            or single_flight in connection
+        ])
+    
+    
     
     @staticmethod
     def calculate_travel_time(flight):

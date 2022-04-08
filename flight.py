@@ -1,4 +1,4 @@
-class Conection():
+class Flight():
     def __init__(self, record):    
         self.record = record
         self.target_city = None
