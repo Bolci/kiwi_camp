@@ -1,6 +1,32 @@
 # Python weekend entry task
 
-**Write a python script/module/package, that for a given flight data in a form of `csv` file (check the examples), prints out a structured list of all flight combinations for a selected route between airports A -> B, sorted by the final price for the trip.**
+** This is my solution to Entry task for python weekend organized by kiwi.com**
+The purpose of this program is to find fligs between aiports. 
+
+### Running the code
+Code could be run using command line with these arguments:
+
+
+#### Mandatory arguments
+There are 3 mandatory arguments:
+
+| Argument name | type    | Description              | Notes                        |
+|---------------|---------|--------------------------|------------------------------|
+| `path_data`   | string  | path to input csv file   | Mandatory                    |
+| `origin`      | string  | Origin airport code      | Mandatory                    |
+| `destination` | string  | Destination airport code | Mandatory                    |
+
+#### Optional arguments
+You may add any number of additional search parameters to boost your chances to attend. Here are 2 recommended ones:
+
+| Argument name | type    | Description              | Notes                        |
+|---------------|---------|--------------------------|------------------------------|
+| `bags`        | integer | Number of requested bags | Optional (defaults to 0)     |
+| `return`      | boolean | Is it a return flight?   | Optional (defaults to false) |
+
+```bash
+python -m solution <path_to_data> BTW REJ --bags=1
+```
 
 ### Description
 You've been provided with some semi-randomly generated example csv datasets you can use to test your solution. The datasets have following columns:
