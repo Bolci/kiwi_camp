@@ -26,5 +26,5 @@ Optinal argument:
 
 Example of running the file: 
 ```bash
-python -m solution <path_to_data> BTW REJ --bags=1
+python -m solution example/example0.csv BTW REJ --bags=1
 ```
