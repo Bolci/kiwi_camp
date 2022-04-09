@@ -11,8 +11,8 @@ def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('path_data')
-    parser.add_argument('from_destination')
-    parser.add_argument('goal_destination')
+    parser.add_argument('origin')
+    parser.add_argument('destination')
     parser.add_argument("--bags", "--bags", default=0)
     parser.add_argument("--return", "--return", default=False, action='store_true')
 
@@ -24,8 +24,8 @@ def main():
 
     args = vars(args)
     file =  args['path_data']
-    from_destination = args['from_destination']
-    goal_destination = args['goal_destination']
+    from_destination = args['origin']
+    goal_destination = args['destination']
     bag = int(args['bags'])
     return_f = args["return"]
 
