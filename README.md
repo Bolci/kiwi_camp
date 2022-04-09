@@ -1,6 +1,12 @@
 # Python weekend entry task
 
-**Write a python script/module/package, that for a given flight data in a form of `csv` file (check the examples), prints out a structured list of all flight combinations for a selected route between airports A -> B, sorted by the final price for the trip.**
+** This is my solution to Entry task for python weekend organized by kiwi.com**
+
+### Running the code
+Code could be run using command line with command in following format
+```bash
+python -m solution <path_to_data> BTW REJ --bags=1
+```
 
 ### Description
 You've been provided with some semi-randomly generated example csv datasets you can use to test your solution. The datasets have following columns:
