@@ -1,9 +1,29 @@
 # Python weekend entry task
 
 ** This is my solution to Entry task for python weekend organized by kiwi.com**
+The purpose of this program is to find fligs between aiports. 
 
 ### Running the code
-Code could be run using command line with command in following format
+Code could be run using command line with these arguments:
+
+
+#### Mandatory arguments
+There are 3 mandatory arguments:
+
+| Argument name | type    | Description              | Notes                        |
+|---------------|---------|--------------------------|------------------------------|
+| `path_data`   | string  | path to input csv file   | Mandatory                    |
+| `origin`      | string  | Origin airport code      | Mandatory                    |
+| `destination` | string  | Destination airport code | Mandatory                    |
+
+#### Optional arguments
+You may add any number of additional search parameters to boost your chances to attend. Here are 2 recommended ones:
+
+| Argument name | type    | Description              | Notes                        |
+|---------------|---------|--------------------------|------------------------------|
+| `bags`        | integer | Number of requested bags | Optional (defaults to 0)     |
+| `return`      | boolean | Is it a return flight?   | Optional (defaults to false) |
+
 ```bash
 python -m solution <path_to_data> BTW REJ --bags=1
 ```
