@@ -89,13 +89,7 @@ class GraphDatabase():
             visited_cities_copy = visited_cities.copy()
 
             if airport.name == destination:
-
-                print("ano")
-                #for x in used_flights_copy:
-                #    print(x.record)
-                #print(airport.name)
                 matches.append(used_flights_copy)
-                print(used_flights_copy)
                 return
 
             visited_cities_copy.append(airport)
