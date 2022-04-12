@@ -5,6 +5,7 @@ def load_csv(path):
     with open(path, 'r') as file:
         my_reader = csv.reader(file, delimiter = ',')
         file = [x for x in my_reader]
+
     return file
 
 def is_time_in_interval(time1,time2,time_range_in_hours):

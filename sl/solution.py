@@ -45,7 +45,6 @@ def main():
 
     matches = database.search(from_destination, goal_destination, bags = bag)
 
-
     if matches == []:
         print("No matches found")
         return 0

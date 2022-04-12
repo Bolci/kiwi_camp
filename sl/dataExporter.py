@@ -28,6 +28,7 @@ class DataExporter():
     @staticmethod
     def get_allowed_bags(flights):
         '''parse maximum allowed bags from flight list'''
+
         return min([flight.record["bags_allowed"] for flight in flights])
     
     def prepare_single_flight(self, flight, bags_requested,
