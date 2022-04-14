@@ -1,6 +1,7 @@
 from flight import Flight
 from airport import Airport
 from utils import *
+import time
 
 class GraphDatabase():
     def __init__(self, attributes):
@@ -85,39 +86,28 @@ class GraphDatabase():
             ''' function that would be called recursiverly to search'''
 
             #copy all visited nonections and used flights
-            used_flights_copy = used_flights.copy()
-            visited_cities_copy = visited_cities.copy()
+
 
             if airport.name == destination:
-                matches.append(used_flights_copy)
+                matches.append(used_flights)
                 return
 
+            visited_cities_copy = visited_cities.copy()
             visited_cities_copy.append(airport)
 
 
             for single_flight in airport.flights:
-                #print(single_flight.record)
-
-                #if the airport was not visited yet  and if bags condition is met
                 if single_flight.target_city not in visited_cities_copy and int(single_flight.record['bags_allowed']) >= bags:
 
-                    #check if the time condition is satiefied
-                    if used_flights_copy != []:
-                        if is_time_in_interval(used_flights_copy[-1].record['arrival'], single_flight.record['departure'], [1,6]):
+                    if used_flights != []:
+                        if not is_time_in_interval(used_flights[-1].record['arrival'], single_flight.record['departure'], [1,6]):
+                            continue
+                        elif return_flight and not is_time_bigger(single_flight.record['departure'],time_cond):
+                            continue
 
-                            used_flights_copy.append(single_flight)
-                            grow(single_flight.target_city, visited_cities_copy, used_flights_copy)
-                    else:
-
-                        #check if I want to look only for return flights
-                        if return_flight:
-                            if is_time_bigger(single_flight.record['departure'],time_cond):
-                                used_flights_copy.append(single_flight)
-                                grow(single_flight.target_city, visited_cities_copy, used_flights_copy)
-
-                        else:
-                            used_flights_copy.append(single_flight)
-                            grow(single_flight.target_city, visited_cities_copy, used_flights_copy)
+                    used_flights_copy = used_flights.copy()
+                    used_flights_copy.append(single_flight)
+                    grow(single_flight.target_city, visited_cities_copy, used_flights_copy)
 
 
         grow(self.airports[origin_id], visited_cities_global, used_flights_global)
